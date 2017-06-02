@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router()
 const fs = require('fs');
 
+
 router.get('/', (req, res) => {
     const blogPostTitle = req.query.title;
     fs.readFile('./database.json', 'utf8', (err, data) => {
@@ -14,17 +15,13 @@ router.get('/', (req, res) => {
         var matchedPost = parsedData.filter(posts => {
             return posts.title === blogPostTitle;
         })
-        if (!matchedPost) {
-            let message = "Sorry there are no posts with that title";
-            res.send(message)
-            return
-        }
         res.send(matchedPost)
     })
 })
 
 router.post('/', (req, res) => {
     const blog = req.body;
+    console.log(req.body)
     fs.readFile('./database.json', 'utf8', (err, data) => {
         if (err) {
             console.log(err)
