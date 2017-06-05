@@ -31,15 +31,15 @@ const getDataFromBlogPostApi = (searchTitle, callback) => {
 const postDataToBlogApi = (blogTitle, blogContent, callback) => {
     let settings = {
       url: DATABASE_URL,
+      contentType: 'application/json',
       method: 'POST',
       data: {
-          title: blogTitle,
-          content: blogContent
+          'title': blogTitle,
+          'content': blogContent
         },
         success: callback
 }
 
- console.log('post request')
   $.ajax(settings)
 };
 
